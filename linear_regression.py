@@ -193,3 +193,107 @@ print('q_r is ', t_p_r)
 print('R^2 is ', t_p_r * t_p_r)
 print('slope: ', t_p_slope)
 print('intercept ', t_p_intercept)
+
+################################################################################
+evapotranspiration = df['Annual Avg. Evapotranspiration']
+p = df['Annual Avg. Precipitation']
+
+e_p_slope, e_p_intercept, e_p_r, e_p_p, e_p_std_error = stats.linregress(p, evapotranspiration)
+
+e_p_linear_regression = e_p_slope * p + e_p_intercept
+
+plt.scatter(p, evapotranspiration)
+plt.plot(p, e_p_linear_regression)
+plt.title('Precipitation vs Evapotranspiration')
+plt.xlabel('Preciptiation')
+plt.ylabel('Evapotranspiration')
+plt.grid(True)
+plt.show()
+
+print(), print(), print(), print(), print()
+print('Annual Avg Precipitation vs Evapotranspiration ALL DATA')
+print('q_r is ', e_p_r)
+print('R^2 is ', e_p_r * e_p_r)
+print('slope: ', e_p_slope)
+print('intercept ', e_p_intercept)
+
+################################################################################
+p = df['Annual Avg. Precipitation']
+river_flow = df['Annual Avg. River Flow']
+
+(p_river_flow_slope, p_river_flow_intercept,
+ p_river_flow_r, p_river_flow_p, p_river_flow_std_error)\
+    = stats.linregress(p, river_flow)
+
+p_river_flow_linear_regression = p_river_flow_slope * p + p_river_flow_intercept
+
+plt.scatter(p, river_flow)
+plt.plot(p, p_river_flow_linear_regression)
+plt.title('Precipitation vs River Flow')
+plt.xlabel('Precipitation')
+plt.ylabel('River Flow')
+plt.grid(True)
+plt.show()
+
+print(), print(), print(), print(), print()
+print('Annual Avg Precipitation vs River Flow ALL DATA')
+print('Annual Avg Precipitation vs River Flow: q_r is ', p_river_flow_r)
+print('Annual Avg Precipitation vs River Flow: R^2 is ', p_river_flow_r * p_river_flow_r)
+print('Annual Avg Precipitation vs River Flow: slope: ', p_river_flow_slope)
+print('Annual Avg Precipitation vs River Flow: intercept ', p_river_flow_intercept)
+
+
+################################################################################
+evapotranspiration = df['Annual Avg. Evapotranspiration']
+river_flow = df['Annual Avg. River Flow']
+
+e_river_flow_slope, e_river_flow_intercept, e_river_flow_r, e_river_flow_p, e_river_flow_std_error = stats.linregress(evapotranspiration, river_flow)
+
+e_river_flow_linear_regression = e_river_flow_slope * evapotranspiration + e_river_flow_intercept
+
+plt.scatter(evapotranspiration, river_flow, c='green')
+plt.plot(evapotranspiration, e_river_flow_linear_regression, c='black')
+plt.title('Evapotranspiration vs River Flow (mm)')
+plt.xlabel('Evapotranspiration (mm)')
+plt.ylabel('River Flow (mm)')
+plt.grid(True)
+plt.show()
+
+print(), print(), print(), print(), print()
+print('Annual Avg Evapotranspiration vs River Flow ALL DATA')
+print('Annual Avg Precipitation vs River Flow: q_r is ', e_river_flow_r)
+print('Annual Avg Precipitation vs River Flow: R^2 is ', e_river_flow_r * e_river_flow_r)
+print('Annual Avg Precipitation vs River Flow: slope: ', e_river_flow_slope)
+print('Annual Avg Precipitation vs River Flow: intercept ', e_river_flow_intercept)
+
+################################################################################
+soil = df['Soil Permeability']
+river_flow = df['Annual Avg. River Flow']
+
+s_river_flow_slope, s_river_flow_intercept, s_river_flow_r, s_river_flow_p, s_river_flow_std_error = stats.linregress(soil, river_flow)
+
+s_river_flow_linear_regression = s_river_flow_slope * soil + s_river_flow_intercept
+
+plt.scatter(soil, river_flow, c='red')
+plt.plot(soil, s_river_flow_linear_regression, c='black')
+plt.xlabel('Soil')
+plt.ylabel('River Flow')
+plt.title('Soil vs River Flow')
+plt.grid(True)
+plt.show()
+
+print(), print(), print(), print(), print()
+print('Soil vs River Flow ALL DATA')
+print('Soil vs River Flow: q_r is ', s_river_flow_r)
+print('Soil vs River Flow: R^2 is ', s_river_flow_r * s_river_flow_r)
+print('Soil vs River Flow: slope: ', s_river_flow_slope)
+print('Soil vs River Flow: intercept ', s_river_flow_intercept)
+
+
+
+
+
+
+
+
+
