@@ -290,10 +290,49 @@ print('Soil vs River Flow: slope: ', s_river_flow_slope)
 print('Soil vs River Flow: intercept ', s_river_flow_intercept)
 
 
+####################################################################
+soil = df['Soil Permeability']
+aquifer_recharge = df['Annual Avg. Aquifer Recharge']
+
+s_aquifer_recharge_slope, s_aquifer_recharge_intercept, s_aquifer_recharge_r, s_aquifer_recharge_p, s_aquifer_recharge_std_error = stats.linregress(soil, aquifier_recharge)
+
+s_aquifer_recharge_linear_regression = s_aquifer_recharge_slope * soil + s_aquifer_recharge_intercept
+
+plt.scatter(soil, aquifer_recharge, c='purple')
+plt.plot(soil, s_aquifer_recharge_linear_regression, c='black')
+plt.xlabel("Soil")
+plt.ylabel('Aquifer Recharge')
+plt.title('Soil vs Aquifer Recharge')
+plt.grid(True)
+plt.show()
 
 
+print(), print(), print(), print(), print()
+print('Soil vs Aquifer Recharge ALL DATA')
+print('Soil vs Aquifer Recharge: q_r is ', s_aquifer_recharge_r)
+print('Soil vs Aquifer Recharge: R^2 is ', s_aquifer_recharge_r * s_aquifer_recharge_r)
+print('Soil vs Aquifer Recharge: slope: ', s_aquifer_recharge_slope)
+print('Soil vs Aquifer Recharge: intercept ', s_aquifer_recharge_intercept)
 
+####################################################################
+snow = df['Annual Avg. Snow']
+river_flow = df['Annual Avg. River Flow']
 
+snow_river_flow_slope, snow_river_flow_intercept, snow_river_flow_r, snow_river_flow_p, snow_river_flow_std_error = stats.linregress(snow, river_flow)
 
+snow_river_flow_linear_regression = snow_river_flow_slope * snow + snow_river_flow_intercept
 
+plt.scatter(snow, river_flow, c='orange')
+plt.plot(snow, snow_river_flow_linear_regression, c='black')
+plt.xlabel('Snow')
+plt.ylabel('River Flow')
+plt.title('Snow vs River Flow ALL DATA')
+plt.grid(True)
+plt.show()
 
+print(), print(), print(), print(), print()
+print('Soil vs River Flow ALL DATA')
+print('Soil vs River Flow: q_r is ', snow_river_flow_r)
+print('Soil vs River Flow: R^2 is ', snow_river_flow_r * snow_river_flow_r)
+print('Soil vs River Flow: slope: ', snow_river_flow_slope)
+print('Soil vs River Flow: intercept ', snow_river_flow_intercept)
