@@ -8,11 +8,14 @@ data = pd.read_csv('/Users/danielhernandez/Downloads/Watershed_Characteristics.c
 ###############
 # define the feature set X and the target variable y
 # 'Annual Avg. River Flow' is the column we want to predict
-X = data.drop('Annual Avg. River Flow', axis=1)  # Features
+drop = ['Annual Avg. River Flow', 'Runoff Ratio', 'Basin ID']
+
+X = data.drop(drop, axis=1)  # Features
 y = data['Annual Avg. River Flow']  # Target variable
 
-XX = data.drop('Annual Avg. Aquifer Recharge', axis=1)
-yy = data['Annual Avg. Aquifer Recharge']
+#XX = data.drop('Annual Avg. Aquifer Recharge', axis=1)
+#yy = data['Annual Avg. Aquifer Recharge']
+
 
 def random_forest(x, y2):
     # split the data into training and testing sets
@@ -62,7 +65,6 @@ def random_forest(x, y2):
     plt.title('Actual vs. Predicted Annual Avg. River Flow')
     plt.show()
 
-    print(), print(), print()
     print(f'Results for {y2.name}')
     importances = model.feature_importances_
     feature_names = x.columns
@@ -70,7 +72,3 @@ def random_forest(x, y2):
     print(importance_df.sort_values(by='Importance', ascending=False))
 
 random_forest(X, y)
-print(), print(), print()
-random_forest(XX, yy)
-# 1. identify the most important for predicting river flow.
-# 2. install geopandas

@@ -15,7 +15,6 @@ df.dropna(inplace=True)
 scaler = StandardScaler()
 
 #2. KMeans clusters use all the variables except river flow and recharge
-#does this include all the ones that aren't also tempe
 wanted_transform = ['Annual Avg. Temp', 'Annual Avg. Snow', 'Annual Avg. Precipitation',
 'Area']
 
