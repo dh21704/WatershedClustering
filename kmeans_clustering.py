@@ -11,7 +11,6 @@ df = pd.read_csv('/Users/danielhernandez/Downloads/Watershed_Characteristics.csv
 #drop rows with missing values
 df.dropna(inplace=True)
 
-
 #initialize scaler
 scaler = StandardScaler()
 

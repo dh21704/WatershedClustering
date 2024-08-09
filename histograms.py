@@ -10,7 +10,7 @@ bins = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
 
 #plot streamflow
-plt.hist(df['Annual Avg. River Flow'], bins = bins, edgecolor='black')
+plt.hist(df['Annual Avg. River Flow'], bins = bins, edgecolor='black', color='purple')
 plt.title('Annual Avg. River Flow')
 plt.xlabel('River Flow (mm)')
 plt.ylabel('Number of River Flow Respondents')

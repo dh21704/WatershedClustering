@@ -51,16 +51,18 @@ def random_forest(x, y2):
     print(f"Mean Squared Error: {mse}")
     print(f"R^2 Score: {r2}")
 
+    x_name = x.columns[0]
     #plot a scatter plot to visualize the relationship between actual and predicted values
     plt.scatter(comparison_df['Actual'], comparison_df['Predicted'])
     #plt.xlabel('Actual Annual Avg. River Flow (mm)')
-    plt.xlabel(f'Actual {y.name} (mm)')
+    plt.xlabel(f'Actual {y2.name} (mm)')
     #plt.ylabel('Predicted Annual Avg. River Flow (mm)')
-    plt.ylabel(f'Predicted {y.name} (mm)')
+    plt.ylabel(f'Predicted {y2.name} (mm)')
     plt.title('Actual vs. Predicted Annual Avg. River Flow')
     plt.show()
 
     print(), print(), print()
+    print(f'Results for {y2.name}')
     importances = model.feature_importances_
     feature_names = x.columns
     importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
