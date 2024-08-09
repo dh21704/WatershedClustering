@@ -14,8 +14,6 @@ y = data['Annual Avg. River Flow']  # Target variable
 XX = data.drop('Annual Avg. Aquifer Recharge', axis=1)
 yy = data['Annual Avg. Aquifer Recharge']
 
-
-
 def random_forest(x, y2):
     # split the data into training and testing sets
     #0.2 means that 20 percent will be used for testing and
@@ -39,6 +37,7 @@ def random_forest(x, y2):
 
     #combine the actual and predicted values into a single DataFrame for comparison
     comparison_df = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
+    print(f'Results for {y2.name}')
 
     #print the DataFrame with actual and predicted values
     print(comparison_df)
@@ -48,6 +47,8 @@ def random_forest(x, y2):
     r2 = r2_score(y_test, y_pred)              # calculate R^2 Score
 
     #print the evaluation metrics
+    print(f'Results for {y2.name}')
+
     print(f"Mean Squared Error: {mse}")
     print(f"R^2 Score: {r2}")
 
@@ -68,7 +69,8 @@ def random_forest(x, y2):
     importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
     print(importance_df.sort_values(by='Importance', ascending=False))
 
-#random_forest(X, y)
+random_forest(X, y)
+print(), print(), print()
 random_forest(XX, yy)
 # 1. identify the most important for predicting river flow.
 # 2. install geopandas
