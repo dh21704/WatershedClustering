@@ -11,6 +11,10 @@ data = pd.read_csv('/Users/danielhernandez/Downloads/Watershed_Characteristics.c
 X = data.drop('Annual Avg. River Flow', axis=1)  # Features
 y = data['Annual Avg. River Flow']  # Target variable
 
+XX = data.drop('Annual Avg. Aquifer Recharge', axis=1)
+yy = data['Annual Avg. Aquifer Recharge']
+
+
 
 def random_forest(x, y2):
     # split the data into training and testing sets
@@ -62,6 +66,7 @@ def random_forest(x, y2):
     importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
     print(importance_df.sort_values(by='Importance', ascending=False))
 
-random_forest(X, y)
+#random_forest(X, y)
+random_forest(XX, yy)
 # 1. identify the most important for predicting river flow.
 # 2. install geopandas

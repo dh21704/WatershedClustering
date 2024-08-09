@@ -336,3 +336,28 @@ print('Soil vs River Flow: q_r is ', snow_river_flow_r)
 print('Soil vs River Flow: R^2 is ', snow_river_flow_r * snow_river_flow_r)
 print('Soil vs River Flow: slope: ', snow_river_flow_slope)
 print('Soil vs River Flow: intercept ', snow_river_flow_intercept)
+
+
+#######################################################
+runoff = df['Runoff Ratio']
+river_flow = df['Annual Avg. River Flow']
+
+(runoff_river_flow_slope, runoff_river_flow_intercept, runoff_river_flow_r,
+ runoff_river_flow_p, runoff_river_flow_std_error) = stats.linregress(runoff, river_flow)
+
+runoff_river_flow_regression_line = runoff_river_flow_slope * runoff + runoff_river_flow_intercept
+
+plt.scatter(runoff, river_flow, c='black')
+plt.plot(runoff, runoff_river_flow_regression_line, c='black')
+plt.xlabel('Runoff')
+plt.ylabel('River Flow')
+plt.title('Runoff vs River Flow')
+plt.grid(True)
+plt.show()
+
+print(), print(), print(), print(), print()
+print('Runoff vs River Flow ALL DATA')
+print('Runoff vs River Flow : q_r is ', runoff_river_flow_r)
+print('Soil vs River Flow: R^2 is ', runoff_river_flow_r * runoff_river_flow_r)
+print('Soil vs River Flow: slope: ', runoff_river_flow_slope)
+print('Soil vs River Flow: intercept ', runoff_river_flow_intercept)
