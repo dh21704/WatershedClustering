@@ -10,11 +10,19 @@ data = pd.read_csv('/Users/danielhernandez/Downloads/Watershed_Characteristics.c
 # 'Annual Avg. River Flow' is the column we want to predict
 drop = ['Annual Avg. River Flow', 'Runoff Ratio', 'Basin ID']
 
-X = data.drop(drop, axis=1)  # Features
-y = data['Annual Avg. River Flow']  # Target variable
+def remove_outliers_iqr(df):
+    df_cleaned = df.copy()
+    for column in df.select_dtypes(include=['float64', 'int64']).columns:
+        Q1 = df_cleaned[column].quantile(0.25)
+        Q3 = df_cleaned[column].quantile(0.75)
+        IQR = Q3 - Q1
+        df_cleaned = df_cleaned[(df_cleaned[column] >= (Q1 - 1.5 * IQR)) & (df_cleaned[column] <= (Q3 + 1.5 * IQR))]
+    return df_cleaned
 
-#XX = data.drop('Annual Avg. Aquifer Recharge', axis=1)
-#yy = data['Annual Avg. Aquifer Recharge']
+df_cleaned_iqr = remove_outliers_iqr(data)
+
+X = df_cleaned_iqr.drop(drop, axis=1)  # Features
+y = df_cleaned_iqr['Annual Avg. River Flow']  # Target variable
 
 
 def random_forest(x, y2):
