@@ -6,8 +6,8 @@ df = pd.read_csv('/Users/danielhernandez/Downloads/Watershed_Characteristics.csv
 
 print(df.info())
 
-x1 = df['Annual Avg. River Flow']
-y2 = df['Annual Avg. Precipitation']
+y2 = df['Annual Avg. River Flow']
+x1 = df['Aridity Index']
 
 def linear_regression_train(x, y):
     slope, intercept, r, p, std_error = stats.linregress(x,y)
@@ -15,7 +15,7 @@ def linear_regression_train(x, y):
 
     plt.scatter(x,y)
     plt.plot(x,linear_regression)
-    plt.xlabel(f'{x.name} (mm)', size=15)
+    plt.xlabel(f'{x.name} ', size=15)
     plt.ylabel(f'{y.name} (mm)', size=15)
     plt.title(f'{x.name} vs {y.name}', size=15)
     plt.grid(True)
